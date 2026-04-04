@@ -38,3 +38,7 @@ npx skills add <owner>/thread-skills --path skills/thread-orchestrator
 ```
 
 The same GitHub path model works for both Codex and Claude Code.
+
+## License
+
+This repository is licensed under Apache License 2.0. See [`LICENSE`](./LICENSE).
