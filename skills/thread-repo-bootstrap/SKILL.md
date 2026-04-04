@@ -9,7 +9,7 @@ Use this skill to make a fresh directory eligible for thread work.
 
 ## Core Rule
 
-If `threads/_template/` does not exist, initialize the repo thread system first and stop before any thread-specific advance.
+If `threads/_template/` does not exist, initialize the repo thread system first. When invoked by `thread-orchestrator` with auto bootstrap enabled, return control so the same round can continue into thread bootstrap or thread advance.
 
 ## Workflow
 
@@ -21,13 +21,14 @@ If `threads/_template/` does not exist, initialize the repo thread system first 
    - `memory-proposal.md`
    - `platform-memory-proposal.md`
 4. Confirm the directory now has repo-level thread capability.
-5. Hand off to `thread-bootstrap` or `thread-orchestrator`.
+5. Return control to `thread-orchestrator` or hand off to `thread-bootstrap`.
 
 ## Rules
 
 - Never skip repo bootstrap in an empty directory and jump straight into thread advancement.
 - Never rewrite existing templates silently; initialize only what is missing unless a human explicitly asks for migration.
 - Treat repo bootstrap as the prerequisite layer below thread bootstrap.
+- Do not convert missing repo bootstrap into a blocked outcome when the caller explicitly allows auto bootstrap.
 
 ## Env Defaults
 

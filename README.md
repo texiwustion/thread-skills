@@ -44,6 +44,8 @@ The same GitHub path model works for both Codex and Claude Code.
 
 Each skill now carries its own references and required scripts so path-based installation does not depend on repo-root `shared/` files.
 
+When `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true`, a fresh directory without `threads/_template/` should be initialized in the same orchestration round before thread creation or advancement continues.
+
 ## License
 
 This repository is licensed under Apache License 2.0. See [`LICENSE`](./LICENSE).

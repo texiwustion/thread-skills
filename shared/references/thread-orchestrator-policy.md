@@ -4,7 +4,9 @@
 
 1. Intake goals
 2. Group by directory
-3. If `threads/_template/` is missing, run repo bootstrap first
+3. If `threads/_template/` is missing:
+   - run repo bootstrap first when auto bootstrap is enabled
+   - otherwise report blocked for that directory
 4. Classify attach vs bootstrap
 5. Select one highest-priority runnable thread per directory
 6. Dispatch the action
@@ -15,6 +17,7 @@
 - Respect `THREAD_SELECTION_POLICY=highest-priority-runnable`
 - Respect `THREAD_ORCHESTRATOR_MAX_THREADS_PER_DIR=1`
 - Respect `THREAD_ORCHESTRATOR_REQUIRE_REPO_BOOTSTRAP=true`
+- Respect `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true` as permission to perform repo bootstrap inline rather than stopping early
 - If the directory has no runnable thread, bootstrap only if allowed and needed
 
 ## Reporting
@@ -36,4 +39,4 @@ Return only:
 
 Fallback behavior:
 
-- If env vars are absent, do not fan out aggressively.
+- If env vars are absent, do not fan out aggressively, but still treat missing repo bootstrap as setup work before reporting blocked.
