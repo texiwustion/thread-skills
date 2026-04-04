@@ -16,6 +16,7 @@
 ## Template Initialization
 
 - Source templates from `threads/_template/`
+- Require repo bootstrap first; do not create the template root ad hoc here
 - Copy only the minimum thread files
 - Keep `memory.md` typed and short
 - Keep `interrupt.md` focused on the first stop point
@@ -29,4 +30,3 @@
 Fallback behavior:
 
 - If env vars are absent, use the repo template root, slug-tNN IDs, and conservative branch switching.
-

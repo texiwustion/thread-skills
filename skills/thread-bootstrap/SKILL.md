@@ -13,22 +13,24 @@ Allocate a stable `thread-id` once, initialize from `threads/_template/`, and st
 
 ## Workflow
 
-1. Decide whether the goal belongs in an existing thread.
-2. If new thread is required, generate `<topic-slug>-tNN`.
-3. Create or checkout `thread/<thread-id>`.
-4. Copy `threads/_template/memory.md` and `threads/_template/interrupt.md`.
-5. Fill only the minimum bootstrap fields.
-6. Write the first stop point into `interrupt.md`.
+1. Confirm `threads/_template/` already exists.
+2. If the template root is missing, stop and hand off to `thread-repo-bootstrap`.
+3. Decide whether the goal belongs in an existing thread.
+4. If new thread is required, generate `<topic-slug>-tNN`.
+5. Create or checkout `thread/<thread-id>`.
+6. Copy `threads/_template/memory.md` and `threads/_template/interrupt.md`.
+7. Fill only the minimum bootstrap fields.
+8. Write the first stop point into `interrupt.md`.
 
 ## Rules
 
 - Use `THREAD_BOOTSTRAP_ID_STYLE=slug-tNN` by default.
 - Use `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true` to decide whether to switch branches automatically.
 - Use `THREAD_BOOTSTRAP_TEMPLATE_ROOT=threads/_template` when set; otherwise use the repo default.
+- Repo bootstrap is a hard prerequisite; do not invent template files ad hoc during thread bootstrap.
 - Never rename a thread after creation.
 - Never add proposal or execution content beyond bootstrap state.
 
 ## When To Load Reference
 
 Load [thread-bootstrap-rules.md](../../shared/references/thread-bootstrap-rules.md) when you need exact ID allocation, template, or branch rules.
-

@@ -1,0 +1,52 @@
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+INIT_SCRIPT = ROOT / "shared" / "scripts" / "init_thread_repo.py"
+BOOTSTRAP_SCRIPT = ROOT / "shared" / "scripts" / "bootstrap_thread.py"
+
+
+class InitThreadRepoCliTest(unittest.TestCase):
+    def test_initializes_threads_template_and_supports_thread_bootstrap(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+
+            init_result = subprocess.run(
+                ["python3", str(INIT_SCRIPT), "--repo-root", str(repo)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(init_result.returncode, 0, msg=init_result.stderr)
+            self.assertTrue((repo / "threads" / "_template" / "memory.md").exists())
+            self.assertTrue((repo / "threads" / "_template" / "interrupt.md").exists())
+            self.assertTrue((repo / "threads" / "_template" / "memory-proposal.md").exists())
+            self.assertTrue((repo / "threads" / "_template" / "platform-memory-proposal.md").exists())
+
+            bootstrap_result = subprocess.run(
+                [
+                    "python3",
+                    str(BOOTSTRAP_SCRIPT),
+                    "--thread-id",
+                    "smoke-goal-t01",
+                    "--goal",
+                    "验证空目录也能先建线程系统再建线程",
+                    "--threads-dir",
+                    str(repo / "threads"),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(bootstrap_result.returncode, 0, msg=bootstrap_result.stderr)
+            self.assertTrue((repo / "threads" / "smoke-goal-t01" / "memory.md").exists())
+            self.assertTrue((repo / "threads" / "smoke-goal-t01" / "interrupt.md").exists())
+
+
+if __name__ == "__main__":
+    unittest.main()

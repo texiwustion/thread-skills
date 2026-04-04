@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thread Repo Bootstrap"
+  short_description: "Initialize repo-level thread templates safely"
+  default_prompt: "Use $thread-repo-bootstrap to create threads/_template and the minimum thread-system files in this fresh directory."
+
+policy:
+  allow_implicit_invocation: true
