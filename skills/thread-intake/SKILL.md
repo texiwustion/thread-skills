@@ -39,5 +39,4 @@ Fallback behavior:
 
 ## When To Load Reference
 
-Load [thread-intake-policy.md](../../shared/references/thread-intake-policy.md) when you need exact classification or question formats.
-
+Load [thread-intake-policy.md](./references/thread-intake-policy.md) when you need exact classification or question formats.

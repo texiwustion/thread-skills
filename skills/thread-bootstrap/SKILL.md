@@ -33,4 +33,9 @@ Allocate a stable `thread-id` once, initialize from `threads/_template/`, and st
 
 ## When To Load Reference
 
-Load [thread-bootstrap-rules.md](../../shared/references/thread-bootstrap-rules.md) when you need exact ID allocation, template, or branch rules.
+Load [thread-bootstrap-rules.md](./references/thread-bootstrap-rules.md) when you need exact ID allocation, template, or branch rules.
+
+## Scripts
+
+- `scripts/allocate_thread_id.py`
+- `scripts/bootstrap_thread.py`

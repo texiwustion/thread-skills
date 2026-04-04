@@ -39,4 +39,8 @@ Fallback behavior:
 
 ## When To Load Reference
 
-Load [thread-repo-bootstrap-rules.md](../../shared/references/thread-repo-bootstrap-rules.md) when you need exact repo initialization rules.
+Load [thread-repo-bootstrap-rules.md](./references/thread-repo-bootstrap-rules.md) when you need exact repo initialization rules.
+
+## Scripts
+
+- `scripts/init_thread_repo.py`

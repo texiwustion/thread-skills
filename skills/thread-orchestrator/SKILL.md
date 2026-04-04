@@ -43,4 +43,4 @@ Fallback behavior:
 
 ## When To Load Reference
 
-Load [thread-orchestrator-policy.md](../../shared/references/thread-orchestrator-policy.md) when you need exact dispatch and reporting rules.
+Load [thread-orchestrator-policy.md](./references/thread-orchestrator-policy.md) when you need exact dispatch and reporting rules.

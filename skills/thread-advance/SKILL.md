@@ -43,5 +43,4 @@ Fallback behavior:
 
 ## When To Load Reference
 
-Load [thread-advance-guards.md](../../shared/references/thread-advance-guards.md) when you need exact blocker semantics or continuation discipline.
-
+Load [thread-advance-guards.md](./references/thread-advance-guards.md) when you need exact blocker semantics or continuation discipline.
