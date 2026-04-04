@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thread Orchestrator"
+  short_description: "Schedule threads across directories conservatively"
+  default_prompt: "Use $thread-orchestrator to group goals by directory and bootstrap or advance one runnable thread per directory."
+
+policy:
+  allow_implicit_invocation: true

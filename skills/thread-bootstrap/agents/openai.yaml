@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thread Bootstrap"
+  short_description: "Create new thread baselines from templates"
+  default_prompt: "Use $thread-bootstrap to allocate a stable slug-tNN thread ID and initialize a new thread from templates."
+
+policy:
+  allow_implicit_invocation: true

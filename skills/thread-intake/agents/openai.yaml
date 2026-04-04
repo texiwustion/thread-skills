@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thread Intake"
+  short_description: "Classify goals into existing or new threads"
+  default_prompt: "Use $thread-intake to classify these goals into existing threads, new threads, or one grouped clarification round."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thread Advance"
+  short_description: "Advance one runnable thread by one round"
+  default_prompt: "Use $thread-advance to continue one runnable thread by one bounded round and stop on protocol blockers."
+
+policy:
+  allow_implicit_invocation: true
