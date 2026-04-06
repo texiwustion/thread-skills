@@ -1,3 +1,4 @@
+import os
 import subprocess
 import tempfile
 import unittest
@@ -70,6 +71,24 @@ class InitThreadRepoCliTest(unittest.TestCase):
             )
 
             self.assertEqual(branch_result.returncode, 0, msg=branch_result.stderr)
+
+    def test_respects_env_when_git_init_is_disabled(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            env = dict(os.environ)
+            env["THREAD_REPO_BOOTSTRAP_INIT_GIT"] = "false"
+
+            init_result = subprocess.run(
+                ["python3", str(INIT_SCRIPT), "--repo-root", str(repo)],
+                capture_output=True,
+                text=True,
+                check=False,
+                env=env,
+            )
+
+            self.assertEqual(init_result.returncode, 0, msg=init_result.stderr)
+            self.assertFalse((repo / ".git").exists())
+            self.assertTrue((repo / "threads" / "_template" / "memory.md").exists())
 
 
 if __name__ == "__main__":

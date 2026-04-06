@@ -19,7 +19,9 @@ Copy `.env.example` to `.env` and adjust values for your workflow. The checked-i
 - repo bootstrap initializes git by default so branch operations can happen in the same round
 - grouped clarification capped at five questions
 - stop on dirty `interrupt.md`
+- stop on dirty worktrees before an auto-committing round
 - stop on pending `memory-proposal.md`
+- auto-commit successful thread advances by default
 
 ## Publish With GitHub CLI
 
