@@ -47,6 +47,30 @@ class InitThreadRepoCliTest(unittest.TestCase):
             self.assertTrue((repo / "threads" / "smoke-goal-t01" / "memory.md").exists())
             self.assertTrue((repo / "threads" / "smoke-goal-t01" / "interrupt.md").exists())
 
+    def test_initializes_git_repo_and_supports_thread_branch_creation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+
+            init_result = subprocess.run(
+                ["python3", str(INIT_SCRIPT), "--repo-root", str(repo)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(init_result.returncode, 0, msg=init_result.stderr)
+            self.assertTrue((repo / ".git").exists())
+
+            branch_result = subprocess.run(
+                ["git", "checkout", "-b", "thread/smoke-branch-t01"],
+                cwd=repo,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(branch_result.returncode, 0, msg=branch_result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -5,7 +5,7 @@ Installable skills for running a repository-native thread system across Codex an
 ## Skill Suite
 
 - `thread-intake`: classify one or many goals into existing threads, new threads, or one grouped clarification round
-- `thread-repo-bootstrap`: initialize `threads/_template/` and the minimum repo-level thread-system files in a fresh directory
+- `thread-repo-bootstrap`: initialize `threads/_template/`, create a git repo when missing, and lay down the minimum repo-level thread-system files in a fresh directory
 - `thread-bootstrap`: allocate stable `slug-tNN` thread IDs and initialize new thread baselines from templates
 - `thread-advance`: advance one runnable thread by one bounded round from the minimal continuation entry
 - `thread-orchestrator`: intake, bootstrap, and advance at most one highest-priority runnable thread per directory
@@ -16,6 +16,7 @@ Copy `.env.example` to `.env` and adjust values for your workflow. The checked-i
 
 - one runnable thread per directory
 - repo bootstrap required before thread advance in a fresh directory
+- repo bootstrap initializes git by default so branch operations can happen in the same round
 - grouped clarification capped at five questions
 - stop on dirty `interrupt.md`
 - stop on pending `memory-proposal.md`
@@ -44,7 +45,7 @@ The same GitHub path model works for both Codex and Claude Code.
 
 Each skill now carries its own references and required scripts so path-based installation does not depend on repo-root `shared/` files.
 
-When `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true`, a fresh directory without `threads/_template/` should be initialized in the same orchestration round before thread creation or advancement continues.
+When `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true`, a fresh directory without `threads/_template/` or `.git/` should be initialized in the same orchestration round before thread creation or advancement continues.
 
 ## License
 

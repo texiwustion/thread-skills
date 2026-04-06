@@ -4,7 +4,7 @@
 
 1. Intake goals
 2. Group by directory
-3. If `threads/_template/` is missing:
+3. If `threads/_template/` or `.git/` is missing:
    - run repo bootstrap first when auto bootstrap is enabled
    - otherwise report blocked for that directory
 4. Classify attach vs bootstrap
@@ -18,6 +18,7 @@
 - Respect `THREAD_ORCHESTRATOR_MAX_THREADS_PER_DIR=1`
 - Respect `THREAD_ORCHESTRATOR_REQUIRE_REPO_BOOTSTRAP=true`
 - Respect `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true` as permission to perform repo bootstrap inline rather than stopping early
+- Treat missing `.git/` as part of missing repo bootstrap, not as a separate blocked state when auto bootstrap is enabled
 - If the directory has no runnable thread, bootstrap only if allowed and needed
 
 ## Reporting

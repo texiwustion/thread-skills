@@ -13,8 +13,8 @@ Allocate a stable `thread-id` once, initialize from `threads/_template/`, and st
 
 ## Workflow
 
-1. Confirm `threads/_template/` already exists.
-2. If the template root is missing, stop and hand off to `thread-repo-bootstrap`.
+1. Confirm `threads/_template/` already exists and repo bootstrap has established git state when branch checkout is expected.
+2. If the template root or `.git/` is missing, stop and hand off to `thread-repo-bootstrap`.
 3. Decide whether the goal belongs in an existing thread.
 4. If new thread is required, generate `<topic-slug>-tNN`.
 5. Create or checkout `thread/<thread-id>`.
@@ -28,6 +28,7 @@ Allocate a stable `thread-id` once, initialize from `threads/_template/`, and st
 - Use `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true` to decide whether to switch branches automatically.
 - Use `THREAD_BOOTSTRAP_TEMPLATE_ROOT=threads/_template` when set; otherwise use the repo default.
 - Repo bootstrap is a hard prerequisite; do not invent template files ad hoc during thread bootstrap.
+- If branch creation or checkout is part of the bootstrap round, require `.git/` first.
 - Never rename a thread after creation.
 - Never add proposal or execution content beyond bootstrap state.
 

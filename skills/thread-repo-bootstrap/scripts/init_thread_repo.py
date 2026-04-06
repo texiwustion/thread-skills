@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import os
+import subprocess
 from pathlib import Path
 
 
@@ -216,7 +218,36 @@ def write_if_missing(path: Path, content: str) -> None:
         path.write_text(content, encoding="utf-8")
 
 
+def env_flag(name: str, default: bool) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def ensure_git_repo(repo_root: Path) -> None:
+    if (repo_root / ".git").exists():
+        return
+
+    if not env_flag("THREAD_REPO_BOOTSTRAP_INIT_GIT", True):
+        return
+
+    default_branch = os.getenv("THREAD_REPO_BOOTSTRAP_GIT_DEFAULT_BRANCH", "main")
+    result = subprocess.run(
+        ["git", "init", "-b", default_branch],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip() or "git init failed")
+
+
 def init_thread_repo(repo_root: Path) -> Path:
+    repo_root.mkdir(parents=True, exist_ok=True)
+    ensure_git_repo(repo_root)
+
     template_dir = repo_root / "threads" / "_template"
     template_dir.mkdir(parents=True, exist_ok=True)
 

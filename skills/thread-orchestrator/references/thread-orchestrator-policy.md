@@ -4,7 +4,7 @@
 
 1. Intake goals
 2. Group by directory
-3. If `threads/_template/` is missing, run repo bootstrap first
+3. If `threads/_template/` or `.git/` is missing, run repo bootstrap first
 4. Classify attach vs bootstrap
 5. Select one highest-priority runnable thread per directory
 6. Dispatch the action
@@ -15,6 +15,7 @@
 - Respect `THREAD_SELECTION_POLICY=highest-priority-runnable`
 - Respect `THREAD_ORCHESTRATOR_MAX_THREADS_PER_DIR=1`
 - Respect `THREAD_ORCHESTRATOR_REQUIRE_REPO_BOOTSTRAP=true`
+- Treat missing `.git/` as part of repo bootstrap, not as a separate blocked state when auto bootstrap is enabled
 - If the directory has no runnable thread, bootstrap only if allowed and needed
 
 ## Reporting
