@@ -7,10 +7,11 @@
 - `NN` is the next available two-digit suffix for that slug
 - Never rename a thread after creation
 
-## Branching
+## Execution Context
 
-- Preferred branch: `thread/<thread-id>`
-- If `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true`, switch to the branch after creating it
+- Canonical thread state lives in `threads/<thread-id>/`
+- Dedicated `thread/<thread-id>` branches are optional advanced infrastructure, not a default requirement
+- If a wrapper honors `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true`, use it only in repos that explicitly adopt branch-per-thread execution
 - Do not create run branches here
 
 ## Template Initialization
@@ -24,9 +25,9 @@
 ## Env Defaults
 
 - `THREAD_BOOTSTRAP_ID_STYLE=slug-tNN`
-- `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true`
+- `THREAD_BOOTSTRAP_AUTO_CHECKOUT=false`
 - `THREAD_BOOTSTRAP_TEMPLATE_ROOT=threads/_template`
 
 Fallback behavior:
 
-- If env vars are absent, use the repo template root, slug-tNN IDs, and conservative branch switching.
+- If env vars are absent, use the repo template root, slug-tNN IDs, and directory-first execution.

@@ -21,7 +21,7 @@ If `threads/_template/` does not exist or the directory is not yet a git repo, i
    - `interrupt.md`
    - `memory-proposal.md`
    - `platform-memory-proposal.md`
-5. Confirm the directory now has repo-level thread capability and can support branch operations.
+5. Confirm the directory now has repo-level thread capability and git-backed history for future advances.
 6. Return control to `thread-orchestrator` or hand off to `thread-bootstrap`.
 
 ## Rules

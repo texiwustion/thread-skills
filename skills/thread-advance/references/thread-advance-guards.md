@@ -2,7 +2,8 @@
 
 ## Minimal Continuation Entry
 
-- Confirm the target thread branch first
+- Confirm the target thread directory first
+- Stay on the current repo or worktree unless the repo explicitly adopts dedicated thread branches
 - Read only `AGENTS.md`, `CLAUDE.md`, thread `memory.md`, and thread `interrupt.md`
 - Do not widen reads unless those files explicitly point to more context
 - If auto-commit is enabled, prefer a clean worktree at round start so the final commit captures only this round

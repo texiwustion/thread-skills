@@ -9,26 +9,28 @@ Use this skill to create a new thread when a goal should not be attached to an e
 
 ## Core Rule
 
-Allocate a stable `thread-id` once, initialize from `threads/_template/`, and stop before doing any goal work.
+Allocate a stable `thread-id` once, initialize `threads/<thread-id>/` from `threads/_template/`, and stop before doing any goal work.
 
 ## Workflow
 
-1. Confirm `threads/_template/` already exists and repo bootstrap has established git state when branch checkout is expected.
+1. Confirm `threads/_template/` already exists and repo bootstrap has established git state for commit history.
 2. If the template root or `.git/` is missing, stop and hand off to `thread-repo-bootstrap`.
 3. Decide whether the goal belongs in an existing thread.
 4. If new thread is required, generate `<topic-slug>-tNN`.
-5. Create or checkout `thread/<thread-id>`.
+5. Create `threads/<thread-id>/`.
 6. Copy `threads/_template/memory.md` and `threads/_template/interrupt.md`.
 7. Fill only the minimum bootstrap fields.
 8. Write the first stop point into `interrupt.md`.
 
+The canonical thread identity is the directory under `threads/`. Dedicated `thread/<thread-id>` branches are optional advanced execution infrastructure and are not created by the bootstrap script.
+
 ## Rules
 
 - Use `THREAD_BOOTSTRAP_ID_STYLE=slug-tNN` by default.
-- Use `THREAD_BOOTSTRAP_AUTO_CHECKOUT=true` to decide whether to switch branches automatically.
+- Treat `THREAD_BOOTSTRAP_AUTO_CHECKOUT` as an optional wrapper-level behavior only when a repo explicitly chooses branch-per-thread execution.
 - Use `THREAD_BOOTSTRAP_TEMPLATE_ROOT=threads/_template` when set; otherwise use the repo default.
 - Repo bootstrap is a hard prerequisite; do not invent template files ad hoc during thread bootstrap.
-- If branch creation or checkout is part of the bootstrap round, require `.git/` first.
+- Do not require or assume a dedicated thread branch in the default flow.
 - Never rename a thread after creation.
 - Never add proposal or execution content beyond bootstrap state.
 

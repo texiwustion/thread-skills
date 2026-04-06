@@ -4,7 +4,7 @@
 
 - Create the repo-level thread system in a fresh directory
 - Establish `threads/_template/` before any thread bootstrap or thread advance
-- Initialize git when missing so branch operations can happen in the same round
+- Initialize git when missing so commit-backed thread rounds can happen in the same round
 
 ## Minimum Files
 
@@ -17,7 +17,7 @@
 ## Guardrails
 
 - If `threads/_template/` is missing, thread advancement must not start
-- If `.git/` is missing and git init is enabled, repo bootstrap must create it before any branch-oriented thread action
+- If `.git/` is missing and git init is enabled, repo bootstrap must create it before any git-backed thread action
 - Initialize missing template files only; do not silently overwrite customized templates
 - After repo bootstrap, hand off to `thread-bootstrap` for new threads
 

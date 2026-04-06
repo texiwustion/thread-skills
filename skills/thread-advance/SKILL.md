@@ -1,6 +1,6 @@
 ---
 name: thread-advance
-description: Advance one runnable thread by one bounded round from the minimal continuation entry, stopping on dirty interrupt files, pending proposals, or contract overreach, then auto-commit a successful round by default.
+description: Advance one runnable thread by one bounded round from the minimal continuation entry, using the thread directory as the canonical target, stopping on dirty interrupt files, pending proposals, or contract overreach, then auto-commit a successful round by default.
 ---
 
 # Thread Advance
@@ -13,13 +13,15 @@ Read the minimal thread state, run one bounded contract, write back only the cur
 
 ## Workflow
 
-1. Confirm the target `thread/<thread-id>` branch context.
+1. Confirm the target thread directory and current repo or worktree context.
 2. Read `AGENTS.md`, `CLAUDE.md`, the thread `memory.md`, and the thread `interrupt.md`.
 3. Check for dirty `interrupt.md`, dirty worktree when auto-commit is enabled, or pending `memory-proposal.md`.
 4. Follow the active `NextStepContract`.
 5. Advance exactly one round.
 6. Rewrite `interrupt.md` with the new stop point.
 7. If verification passed and no proposal is pending, commit the round by default with `scripts/commit_thread_round.py`.
+
+Thread state is canonical in `threads/<thread-id>/`. A dedicated `thread/<thread-id>` branch is optional execution infrastructure, not a required invariant of this skill.
 
 ## Stop Conditions
 

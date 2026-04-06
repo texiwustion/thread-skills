@@ -16,12 +16,18 @@ Copy `.env.example` to `.env` and adjust values for your workflow. The checked-i
 
 - one runnable thread per directory
 - repo bootstrap required before thread advance in a fresh directory
-- repo bootstrap initializes git by default so branch operations can happen in the same round
+- repo bootstrap initializes git by default so commit-backed rounds can happen in the same round
 - grouped clarification capped at five questions
 - stop on dirty `interrupt.md`
 - stop on dirty worktrees before an auto-committing round
 - stop on pending `memory-proposal.md`
 - auto-commit successful thread advances by default
+
+## Canonical Model
+
+- Canonical thread state lives under `threads/<thread-id>/`
+- The default workflow is `main` plus thread directories, not branch-per-thread
+- Dedicated `thread/<thread-id>` branches or worktrees are optional advanced infrastructure for teams that want stronger isolation
 
 ## Publish With GitHub CLI
 
