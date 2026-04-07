@@ -39,14 +39,38 @@ gh repo create <owner>/thread-skills --public --source=. --push
 
 ## Install With `npx skills`
 
-Install one skill at a time from the GitHub repo path:
+Preferred one-command install on macOS, Linux, or WSL:
 
 ```bash
-npx skills add <owner>/thread-skills --path skills/thread-intake
-npx skills add <owner>/thread-skills --path skills/thread-repo-bootstrap
-npx skills add <owner>/thread-skills --path skills/thread-bootstrap
-npx skills add <owner>/thread-skills --path skills/thread-advance
-npx skills add <owner>/thread-skills --path skills/thread-orchestrator
+bash <(curl -fsSL https://raw.githubusercontent.com/texiwustion/thread-skills/main/scripts/install-thread-skills.sh)
+```
+
+If you already cloned the repo, run the local wrapper instead:
+
+```bash
+./scripts/install-thread-skills.sh
+```
+
+Useful variants:
+
+```bash
+./scripts/install-thread-skills.sh --agent codex
+./scripts/install-thread-skills.sh --agent claude-code -g
+./scripts/install-thread-skills.sh --skill thread-orchestrator --skill thread-advance
+./scripts/install-thread-skills.sh --dry-run
+```
+
+Manual fallback if you do not want the wrapper script:
+
+```bash
+npx skills add texiwustion/thread-skills \
+  --skill thread-repo-bootstrap \
+  --skill thread-bootstrap \
+  --skill thread-intake \
+  --skill thread-advance \
+  --skill thread-orchestrator \
+  -a codex claude-code \
+  -y --copy
 ```
 
 The same GitHub path model works for both Codex and Claude Code.
@@ -54,6 +78,23 @@ The same GitHub path model works for both Codex and Claude Code.
 Each skill now carries its own references and required scripts so path-based installation does not depend on repo-root `shared/` files.
 
 When `THREAD_ORCHESTRATOR_ALLOW_AUTO_BOOTSTRAP=true`, a fresh directory without `threads/_template/` or `.git/` should be initialized in the same orchestration round before thread creation or advancement continues.
+
+## Windows AI Rewrite Prompt
+
+This repository does not ship a `.bat` installer. For Windows users, the supported path is WSL or asking an AI coding assistant to rewrite the shell wrapper into PowerShell for your environment. Use this prompt:
+
+```text
+Rewrite this Bash installer into an equivalent PowerShell script for Windows 11.
+
+Requirements:
+- Preserve behavior exactly from scripts/install-thread-skills.sh
+- Keep support for: --repo, --agent (repeatable), --skill (repeatable), -g/--global, --dry-run, --no-copy, --no-yes, -h/--help
+- Preserve env overrides: THREAD_SKILLS_REPO, THREAD_SKILLS_GLOBAL, THREAD_SKILLS_DRY_RUN
+- Final command must call:
+  npx skills add <repo> --skill ... -a ... [-g] [-y] [--copy]
+- Output only one PowerShell script, no explanation
+- Avoid Windows batch; PowerShell only
+```
 
 ## License
 
